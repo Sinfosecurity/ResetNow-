@@ -310,6 +310,7 @@ struct ChatMessage: Identifiable, Codable {
     let createdAt: Date
     let text: String
     var safetyFlag: String?
+    var suggestedTool: ResetToolKind?
     
     // Nested type alias for backwards compatibility
     typealias MessageSender = ResetNow.MessageSender
@@ -320,7 +321,8 @@ struct ChatMessage: Identifiable, Codable {
         sender: MessageSender,
         createdAt: Date = Date(),
         text: String,
-        safetyFlag: String? = nil
+        safetyFlag: String? = nil,
+        suggestedTool: ResetToolKind? = nil
     ) {
         self.id = id
         self.chatSessionId = chatSessionId
@@ -328,6 +330,7 @@ struct ChatMessage: Identifiable, Codable {
         self.createdAt = createdAt
         self.text = text
         self.safetyFlag = safetyFlag
+        self.suggestedTool = suggestedTool
     }
 }
 

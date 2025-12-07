@@ -90,6 +90,32 @@ struct ContentView: View {
                 .environmentObject(appState)
                 .environmentObject(persistence)
         }
+        .sheet(item: $appState.activeTool) { tool in
+            NavigationStack {
+                toolView(for: tool)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Close") {
+                                appState.activeTool = nil
+                            }
+                        }
+                    }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func toolView(for tool: ResetToolKind) -> some View {
+        switch tool {
+        case .learn: LearnView()
+        case .breathe: BreatheView()
+        case .games: GamesView()
+        case .journal: JournalView()
+        case .visualize: VisualizeView()
+        case .sleep: SleepView()
+        case .affirm: AffirmView()
+        case .journeys: JourneysView()
+        }
     }
     
     private func configureTabBarAppearance() {

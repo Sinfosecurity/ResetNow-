@@ -42,6 +42,9 @@ struct ChatView: View {
                 // Subtle calming background
                 backgroundGradient
                 .ignoresSafeArea()
+                .onTapGesture {
+                    isInputFocused = false
+                }
                 
                 VStack(spacing: 0) {
                     // Safety banner (Guideline 1.4.1 compliance)
@@ -86,6 +89,15 @@ struct ChatView: View {
                     }
                     .accessibilityLabel("Safety Resources")
                     .accessibilityHint("Opens emergency contact information")
+                }
+                
+                // Keyboard Dismissal
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputFocused = false
+                    }
+                    .foregroundColor(.calmSage)
                 }
             }
             .sheet(isPresented: $showSafetyResources) {
@@ -142,6 +154,7 @@ struct ChatView: View {
                 .padding(.horizontal, ResetSpacing.md)
                 .padding(.vertical, ResetSpacing.md)
             }
+            .scrollDismissesKeyboard(.interactively)
             .onChange(of: messages.count) {
                 withAnimation {
                     if let lastId = messages.last?.id {
@@ -280,13 +293,13 @@ struct ChatView: View {
             } catch {
                 await MainActor.run {
                     isTyping = false
-                    // Show error message
+                    // Show empathetic error message
                     let errorMessage = ChatMessage(
                         id: UUID(),
                         chatSessionId: session.id,
                         sender: .rae,
                         createdAt: Date(),
-                        text: "I'm sorry, I couldn't process that. Please try again."
+                        text: "I'm having trouble responding right now, but I'm still here with you. Could you try sending that again? If you're in crisis, please reach out to 988 or 741741."
                     )
                     messages.append(errorMessage)
                 }
@@ -299,6 +312,7 @@ struct ChatView: View {
 struct ChatBubble: View {
     let message: ChatMessage
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var appState: AppState
     
     var isUser: Bool { message.sender == .user }
     var isCrisis: Bool { message.safetyFlag == "crisis_detected" }
@@ -389,6 +403,27 @@ struct ChatBubble: View {
                 Text(message.createdAt.formatted(date: .omitted, time: .shortened))
                     .font(ResetTypography.caption(10))
                     .foregroundColor(.warmGray.opacity(0.7))
+                
+                // Tool Suggestion Chip
+                if let tool = message.suggestedTool {
+                    Button(action: { appState.activeTool = tool }) {
+                        HStack(spacing: 4) {
+                            Image(systemName: tool.iconName)
+                            Text("Try " + tool.displayName)
+                        }
+                        .font(ResetTypography.caption(12).weight(.medium))
+                        .foregroundColor(isUser ? .calmSage : .white)
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 12)
+                        .background(
+                            Capsule()
+                                .fill(isUser ? Color.white : Color.calmSage)
+                                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+                        )
+                    }
+                    .padding(.top, 2)
+                    .accessibilityLabel("Open \(tool.displayName)")
+                }
             }
             .frame(maxWidth: 280, alignment: isUser ? .trailing : .leading)
             

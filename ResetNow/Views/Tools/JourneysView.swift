@@ -96,7 +96,8 @@ struct ActiveJourneyCard: View {
     let action: () -> Void
     
     var progress: CGFloat {
-        CGFloat(currentStep) / CGFloat(journey.totalSteps)
+        guard journey.totalSteps > 0 else { return 0 }
+        return CGFloat(currentStep) / CGFloat(journey.totalSteps)
     }
     
     var body: some View {

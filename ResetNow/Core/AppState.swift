@@ -29,6 +29,8 @@ final class AppState: ObservableObject {
         }
     }
     
+    @Published var activeTool: ResetToolKind?
+    
     // MARK: - UserDefaults Keys
     private enum Keys {
         static let hasAcceptedDisclaimer = "hasAcceptedDisclaimer"

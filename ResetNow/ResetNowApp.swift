@@ -14,10 +14,8 @@ struct ResetNowApp: App {
     @StateObject private var audioService = AudioService.shared
     
     init() {
-        // OpenAI API Key Configuration
-        // The key should be securely stored in Keychain.
-        // In a real app, this would be set via a Settings screen or secure backend.
-        // For this demo, we assume the key has been saved previously or will be set manually.
+        // OpenAI API key is securely stored in iOS Keychain
+        // It was saved on first run and persists until app is uninstalled
     }
     
     @AppStorage("colorScheme") private var storedColorScheme: Int = 0
