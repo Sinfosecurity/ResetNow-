@@ -1,0 +1,841 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001 /* ResetNowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001 /* ResetNowApp.swift */; };
+		A002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B002 /* ContentView.swift */; };
+		A003 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003 /* DesignSystem.swift */; };
+		A004 /* ResetTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004 /* ResetTool.swift */; };
+		A005 /* CoreDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005 /* CoreDataModels.swift */; };
+		A006 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006 /* AppState.swift */; };
+		A007 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007 /* AudioService.swift */; };
+		A008 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008 /* ChatService.swift */; };
+		A009 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B009 /* KeychainService.swift */; };
+		A010 /* OpenAIChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010 /* OpenAIChatService.swift */; };
+		A011 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011 /* PersistenceController.swift */; };
+		A012 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012 /* ChatView.swift */; };
+		A013 /* MyJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B013 /* MyJourneyView.swift */; };
+		A014 /* SOSResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B014 /* SOSResourcesView.swift */; };
+		A015 /* MedicalSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B015 /* MedicalSourcesView.swift */; };
+		A016 /* ResearchReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016 /* ResearchReferencesView.swift */; };
+		A017 /* SupportContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017 /* SupportContactView.swift */; };
+		A019 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019 /* SettingsView.swift */; };
+		A020 /* MyStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B020 /* MyStatsView.swift */; };
+		A021 /* BreatheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021 /* BreatheView.swift */; };
+		A022 /* SleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022 /* SleepView.swift */; };
+		A023 /* AffirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023 /* AffirmView.swift */; };
+		A024 /* VisualizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024 /* VisualizeView.swift */; };
+		A025 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B025 /* GamesView.swift */; };
+		A026 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026 /* LearnView.swift */; };
+		A027 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B027 /* JournalView.swift */; };
+		A028 /* JourneysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028 /* JourneysView.swift */; };
+		A029 /* ResetNow/Features/Onboarding/OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029 /* ResetNow/Features/Onboarding/OnboardingView.swift */; };
+		A030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B030 /* Assets.xcassets */; };
+		A031 /* ResetNow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B031 /* ResetNow.xcdatamodeld */; };
+		B93C99C32EDC642A00D58449 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93C99C22EDC642A00D58449 /* WidgetKit.framework */; };
+		B93C99C52EDC642A00D58449 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93C99C42EDC642A00D58449 /* SwiftUI.framework */; };
+		B93C99D62EDC642C00D58449 /* ResetNowWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B93C99C02EDC642A00D58449 /* ResetNowWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B93C9A9E2EDE94A200D58449 /* nature_crickets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A952EDE94A200D58449 /* nature_crickets.mp3 */; };
+		B93C9A9F2EDE94A200D58449 /* deep_sleep_instant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A922EDE94A200D58449 /* deep_sleep_instant.mp3 */; };
+		B93C9AA02EDE94A200D58449 /* calming_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A902EDE94A200D58449 /* calming_sound.mp3 */; };
+		B93C9AA12EDE94A200D58449 /* relaxing_rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A992EDE94A200D58449 /* relaxing_rain.mp3 */; };
+		B93C9AA22EDE94A200D58449 /* rain_thunderstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A982EDE94A200D58449 /* rain_thunderstorm.mp3 */; };
+		B93C9AA32EDE94A200D58449 /* meditation_calm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A942EDE94A200D58449 /* meditation_calm.mp3 */; };
+		B93C9AA42EDE94A200D58449 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A9C2EDE94A200D58449 /* Localizable.strings */; };
+		B93C9AA52EDE94A200D58449 /* night_crickets_owls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A962EDE94A200D58449 /* night_crickets_owls.mp3 */; };
+		B93C9AA62EDE94A200D58449 /* ocean_waves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A972EDE94A200D58449 /* ocean_waves.mp3 */; };
+		B93C9AA72EDE94A200D58449 /* fire_crackling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A932EDE94A200D58449 /* fire_crackling.mp3 */; };
+		B93C9AA82EDE94A200D58449 /* stress_relief.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A9A2EDE94A200D58449 /* stress_relief.mp3 */; };
+		B93C9AA92EDE94A200D58449 /* deep_meditation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B93C9A912EDE94A200D58449 /* deep_meditation.mp3 */; };
+		B9807CA42EE29767002625CC /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9807CA22EE29767002625CC /* SplashView.swift */; };
+		B9807CA62EE299DB002625CC /* Welcome to resetnow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B9807CA52EE299DB002625CC /* Welcome to resetnow.mp4 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B93C99D42EDC642C00D58449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = P001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B93C99BF2EDC642A00D58449;
+			remoteInfo = ResetNowWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B93C99D72EDC642C00D58449 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B93C99D62EDC642C00D58449 /* ResetNowWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B000 /* ResetNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResetNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B001 /* ResetNowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNowApp.swift; sourceTree = "<group>"; };
+		B002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B003 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		B004 /* ResetTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetTool.swift; sourceTree = "<group>"; };
+		B005 /* CoreDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModels.swift; sourceTree = "<group>"; };
+		B006 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B007 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		B008 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		B009 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		B010 /* OpenAIChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatService.swift; sourceTree = "<group>"; };
+		B011 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		B012 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		B013 /* MyJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJourneyView.swift; sourceTree = "<group>"; };
+		B014 /* SOSResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSResourcesView.swift; sourceTree = "<group>"; };
+		B015 /* MedicalSourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalSourcesView.swift; sourceTree = "<group>"; };
+		B016 /* ResearchReferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchReferencesView.swift; sourceTree = "<group>"; };
+		B017 /* SupportContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportContactView.swift; sourceTree = "<group>"; };
+		B019 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B020 /* MyStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsView.swift; sourceTree = "<group>"; };
+		B021 /* BreatheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheView.swift; sourceTree = "<group>"; };
+		B022 /* SleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepView.swift; sourceTree = "<group>"; };
+		B023 /* AffirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmView.swift; sourceTree = "<group>"; };
+		B024 /* VisualizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizeView.swift; sourceTree = "<group>"; };
+		B025 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
+		B026 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		B027 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		B028 /* JourneysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneysView.swift; sourceTree = "<group>"; };
+		B029 /* ResetNow/Features/Onboarding/OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNow/Features/Onboarding/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
+		B030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B031 /* ResetNow.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodeld; path = ResetNow.xcdatamodeld; sourceTree = "<group>"; };
+		B032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B93C99C02EDC642A00D58449 /* ResetNowWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ResetNowWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93C99C22EDC642A00D58449 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B93C99C42EDC642A00D58449 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B93C9A902EDE94A200D58449 /* calming_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calming_sound.mp3; sourceTree = "<group>"; };
+		B93C9A912EDE94A200D58449 /* deep_meditation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deep_meditation.mp3; sourceTree = "<group>"; };
+		B93C9A922EDE94A200D58449 /* deep_sleep_instant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deep_sleep_instant.mp3; sourceTree = "<group>"; };
+		B93C9A932EDE94A200D58449 /* fire_crackling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire_crackling.mp3; sourceTree = "<group>"; };
+		B93C9A942EDE94A200D58449 /* meditation_calm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meditation_calm.mp3; sourceTree = "<group>"; };
+		B93C9A952EDE94A200D58449 /* nature_crickets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nature_crickets.mp3; sourceTree = "<group>"; };
+		B93C9A962EDE94A200D58449 /* night_crickets_owls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = night_crickets_owls.mp3; sourceTree = "<group>"; };
+		B93C9A972EDE94A200D58449 /* ocean_waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ocean_waves.mp3; sourceTree = "<group>"; };
+		B93C9A982EDE94A200D58449 /* rain_thunderstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain_thunderstorm.mp3; sourceTree = "<group>"; };
+		B93C9A992EDE94A200D58449 /* relaxing_rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = relaxing_rain.mp3; sourceTree = "<group>"; };
+		B93C9A9A2EDE94A200D58449 /* stress_relief.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stress_relief.mp3; sourceTree = "<group>"; };
+		B93C9A9C2EDE94A200D58449 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B9807CA22EE29767002625CC /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		B9807CA52EE299DB002625CC /* Welcome to resetnow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Welcome to resetnow.mp4"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B93C99DA2EDC642C00D58449 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B93C99BF2EDC642A00D58449 /* ResetNowWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B93C99C62EDC642A00D58449 /* ResetNowWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B93C99DA2EDC642C00D58449 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ResetNowWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B93C99BD2EDC642A00D58449 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B93C99C52EDC642A00D58449 /* SwiftUI.framework in Frameworks */,
+				B93C99C32EDC642A00D58449 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B93C99BB2EDC581A00D58449 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B029 /* ResetNow/Features/Onboarding/OnboardingView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B93C99C12EDC642A00D58449 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B93C99C22EDC642A00D58449 /* WidgetKit.framework */,
+				B93C99C42EDC642A00D58449 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B93C9A9B2EDE94A200D58449 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B93C9A902EDE94A200D58449 /* calming_sound.mp3 */,
+				B93C9A912EDE94A200D58449 /* deep_meditation.mp3 */,
+				B93C9A922EDE94A200D58449 /* deep_sleep_instant.mp3 */,
+				B93C9A932EDE94A200D58449 /* fire_crackling.mp3 */,
+				B93C9A942EDE94A200D58449 /* meditation_calm.mp3 */,
+				B93C9A952EDE94A200D58449 /* nature_crickets.mp3 */,
+				B93C9A962EDE94A200D58449 /* night_crickets_owls.mp3 */,
+				B93C9A972EDE94A200D58449 /* ocean_waves.mp3 */,
+				B93C9A982EDE94A200D58449 /* rain_thunderstorm.mp3 */,
+				B93C9A992EDE94A200D58449 /* relaxing_rain.mp3 */,
+				B93C9A9A2EDE94A200D58449 /* stress_relief.mp3 */,
+				B9807CA52EE299DB002625CC /* Welcome to resetnow.mp4 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		B93C9A9D2EDE94A200D58449 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B93C9A9B2EDE94A200D58449 /* Sounds */,
+				B93C9A9C2EDE94A200D58449 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B9807CA32EE29767002625CC /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				B9807CA22EE29767002625CC /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		D000 = {
+			isa = PBXGroup;
+			children = (
+				D001 /* ResetNow */,
+				B93C99C62EDC642A00D58449 /* ResetNowWidget */,
+				B93C99C12EDC642A00D58449 /* Frameworks */,
+				D099 /* Products */,
+				B93C99BB2EDC581A00D58449 /* Recovered References */,
+				B93C9A9D2EDE94A200D58449 /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		D001 /* ResetNow */ = {
+			isa = PBXGroup;
+			children = (
+				B001 /* ResetNowApp.swift */,
+				B002 /* ContentView.swift */,
+				B032 /* Info.plist */,
+				B030 /* Assets.xcassets */,
+				D002 /* Core */,
+				D003 /* Features */,
+				D004 /* Theme */,
+				D005 /* Models */,
+				D006 /* Persistence */,
+				D007 /* Views */,
+			);
+			path = ResetNow;
+			sourceTree = "<group>";
+		};
+		D002 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B006 /* AppState.swift */,
+				D010 /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D003 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D020 /* Chat */,
+				D021 /* Home */,
+				D022 /* Legal */,
+				D023 /* Settings */,
+				D024 /* Stats */,
+				B9807CA32EE29767002625CC /* Splash */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D004 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B003 /* DesignSystem.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		D005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B004 /* ResetTool.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D006 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B005 /* CoreDataModels.swift */,
+				B031 /* ResetNow.xcdatamodeld */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		D007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D030 /* Tools */,
+				D031 /* Chat */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D010 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B007 /* AudioService.swift */,
+				B008 /* ChatService.swift */,
+				B009 /* KeychainService.swift */,
+				B010 /* OpenAIChatService.swift */,
+				B011 /* PersistenceController.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D020 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B012 /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D021 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B013 /* MyJourneyView.swift */,
+				B014 /* SOSResourcesView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D022 /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				B015 /* MedicalSourcesView.swift */,
+				B016 /* ResearchReferencesView.swift */,
+				B017 /* SupportContactView.swift */,
+			);
+			path = Legal;
+			sourceTree = "<group>";
+		};
+		D023 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B019 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D024 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				B020 /* MyStatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		D030 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				B021 /* BreatheView.swift */,
+				B022 /* SleepView.swift */,
+				B023 /* AffirmView.swift */,
+				B024 /* VisualizeView.swift */,
+				B025 /* GamesView.swift */,
+				B026 /* LearnView.swift */,
+				B027 /* JournalView.swift */,
+				B028 /* JourneysView.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		D031 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B000 /* ResetNow.app */,
+				B93C99C02EDC642A00D58449 /* ResetNowWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B93C99BF2EDC642A00D58449 /* ResetNowWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B93C99DB2EDC642C00D58449 /* Build configuration list for PBXNativeTarget "ResetNowWidgetExtension" */;
+			buildPhases = (
+				B93C99BC2EDC642A00D58449 /* Sources */,
+				B93C99BD2EDC642A00D58449 /* Frameworks */,
+				B93C99BE2EDC642A00D58449 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B93C99C62EDC642A00D58449 /* ResetNowWidget */,
+			);
+			name = ResetNowWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ResetNowWidgetExtension;
+			productReference = B93C99C02EDC642A00D58449 /* ResetNowWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		E001 /* ResetNow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F001 /* Build configuration list for PBXNativeTarget "ResetNow" */;
+			buildPhases = (
+				C002 /* Sources */,
+				C001 /* Frameworks */,
+				C003 /* Resources */,
+				B93C99D72EDC642C00D58449 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B93C99D52EDC642C00D58449 /* PBXTargetDependency */,
+			);
+			name = ResetNow;
+			productName = ResetNow;
+			productReference = B000 /* ResetNow.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		P001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					B93C99BF2EDC642A00D58449 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					E001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = F002 /* Build configuration list for PBXProject "ResetNow" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D000;
+			productRefGroup = D099 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E001 /* ResetNow */,
+				B93C99BF2EDC642A00D58449 /* ResetNowWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B93C99BE2EDC642A00D58449 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B93C9A9E2EDE94A200D58449 /* nature_crickets.mp3 in Resources */,
+				B93C9A9F2EDE94A200D58449 /* deep_sleep_instant.mp3 in Resources */,
+				B93C9AA02EDE94A200D58449 /* calming_sound.mp3 in Resources */,
+				B93C9AA12EDE94A200D58449 /* relaxing_rain.mp3 in Resources */,
+				B93C9AA22EDE94A200D58449 /* rain_thunderstorm.mp3 in Resources */,
+				B93C9AA32EDE94A200D58449 /* meditation_calm.mp3 in Resources */,
+				B9807CA62EE299DB002625CC /* Welcome to resetnow.mp4 in Resources */,
+				B93C9AA42EDE94A200D58449 /* Localizable.strings in Resources */,
+				B93C9AA52EDE94A200D58449 /* night_crickets_owls.mp3 in Resources */,
+				B93C9AA62EDE94A200D58449 /* ocean_waves.mp3 in Resources */,
+				B93C9AA72EDE94A200D58449 /* fire_crackling.mp3 in Resources */,
+				B93C9AA82EDE94A200D58449 /* stress_relief.mp3 in Resources */,
+				B93C9AA92EDE94A200D58449 /* deep_meditation.mp3 in Resources */,
+				A030 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B93C99BC2EDC642A00D58449 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001 /* ResetNowApp.swift in Sources */,
+				A002 /* ContentView.swift in Sources */,
+				A003 /* DesignSystem.swift in Sources */,
+				A004 /* ResetTool.swift in Sources */,
+				A005 /* CoreDataModels.swift in Sources */,
+				A006 /* AppState.swift in Sources */,
+				A007 /* AudioService.swift in Sources */,
+				A008 /* ChatService.swift in Sources */,
+				A009 /* KeychainService.swift in Sources */,
+				A010 /* OpenAIChatService.swift in Sources */,
+				A011 /* PersistenceController.swift in Sources */,
+				A012 /* ChatView.swift in Sources */,
+				A013 /* MyJourneyView.swift in Sources */,
+				A014 /* SOSResourcesView.swift in Sources */,
+				A015 /* MedicalSourcesView.swift in Sources */,
+				A016 /* ResearchReferencesView.swift in Sources */,
+				A017 /* SupportContactView.swift in Sources */,
+				B9807CA42EE29767002625CC /* SplashView.swift in Sources */,
+				A019 /* SettingsView.swift in Sources */,
+				A020 /* MyStatsView.swift in Sources */,
+				A021 /* BreatheView.swift in Sources */,
+				A022 /* SleepView.swift in Sources */,
+				A023 /* AffirmView.swift in Sources */,
+				A024 /* VisualizeView.swift in Sources */,
+				A025 /* GamesView.swift in Sources */,
+				A026 /* LearnView.swift in Sources */,
+				A027 /* JournalView.swift in Sources */,
+				A028 /* JourneysView.swift in Sources */,
+				A029 /* ResetNow/Features/Onboarding/OnboardingView.swift in Sources */,
+				A031 /* ResetNow.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B93C99D52EDC642C00D58449 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B93C99BF2EDC642A00D58449 /* ResetNowWidgetExtension */;
+			targetProxy = B93C99D42EDC642C00D58449 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B93C99D82EDC642C00D58449 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7KFVQ7TUQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResetNowWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResetNowWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.resetnow.app.ResetNowWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B93C99D92EDC642C00D58449 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7KFVQ7TUQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResetNowWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResetNowWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.resetnow.app.ResetNowWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		X001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		X002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		X003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7KFVQ7TUQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResetNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResetNow;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.resetnow.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		X004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F7KFVQ7TUQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResetNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResetNow;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.resetnow.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B93C99DB2EDC642C00D58449 /* Build configuration list for PBXNativeTarget "ResetNowWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B93C99D82EDC642C00D58449 /* Debug */,
+				B93C99D92EDC642C00D58449 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F001 /* Build configuration list for PBXNativeTarget "ResetNow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				X003 /* Debug */,
+				X004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F002 /* Build configuration list for PBXProject "ResetNow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				X001 /* Debug */,
+				X002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = P001 /* Project object */;
+}

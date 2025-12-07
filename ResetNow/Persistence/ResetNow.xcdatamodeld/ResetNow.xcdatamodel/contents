@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDAffirmationFavorite" representedClassName="CDAffirmationFavorite" syncable="YES">
+        <attribute name="affirmationId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="affirmationFavorites" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDChatMessage" representedClassName="CDChatMessage" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="safetyFlag" optional="YES" attributeType="String"/>
+        <attribute name="sender" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="chatSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDChatSession" inverseName="messages" inverseEntity="CDChatSession"/>
+    </entity>
+    <entity name="CDChatSession" representedClassName="CDChatSession" syncable="YES">
+        <attribute name="crisisFlagReason" optional="YES" attributeType="String"/>
+        <attribute name="endedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isCrisisFlagged" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDChatMessage" inverseName="chatSession" inverseEntity="CDChatMessage"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="chatSessions" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDDailyAffirmationLog" representedClassName="CDDailyAffirmationLog" syncable="YES">
+        <attribute name="affirmationId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="shownDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser"/>
+    </entity>
+    <entity name="CDJournalEntry" representedClassName="CDJournalEntry" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="entryText" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="moodTag" optional="YES" attributeType="String"/>
+        <attribute name="promptText" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="journalEntries" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDJourneyProgress" representedClassName="CDJourneyProgress" syncable="YES">
+        <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="currentStepIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="journeyId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser"/>
+    </entity>
+    <entity name="CDLessonProgress" representedClassName="CDLessonProgress" syncable="YES">
+        <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lessonId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser"/>
+    </entity>
+    <entity name="CDMoodCheckin" representedClassName="CDMoodCheckin" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="moodType" optional="YES" attributeType="String"/>
+        <attribute name="valueAfter" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="valueBefore" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDSession" inverseName="moodCheckins" inverseEntity="CDSession"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="moodCheckins" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDSession" representedClassName="CDSession" syncable="YES">
+        <attribute name="endedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="sessionType" optional="YES" attributeType="String"/>
+        <attribute name="sourceToolId" optional="YES" attributeType="String"/>
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="subtypeId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="moodCheckins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDMoodCheckin" inverseName="session" inverseEntity="CDMoodCheckin"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUser" inverseName="sessions" inverseEntity="CDUser"/>
+    </entity>
+    <entity name="CDUser" representedClassName="CDUser" syncable="YES">
+        <attribute name="acceptedDisclaimerAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dailyAffirmationEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="preferredReminderTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="resetsReminderEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String"/>
+        <relationship name="affirmationFavorites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDAffirmationFavorite" inverseName="user" inverseEntity="CDAffirmationFavorite"/>
+        <relationship name="chatSessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDChatSession" inverseName="user" inverseEntity="CDChatSession"/>
+        <relationship name="journalEntries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDJournalEntry" inverseName="user" inverseEntity="CDJournalEntry"/>
+        <relationship name="moodCheckins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDMoodCheckin" inverseName="user" inverseEntity="CDMoodCheckin"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDSession" inverseName="user" inverseEntity="CDSession"/>
+    </entity>
+</model>
+

@@ -1,0 +1,76 @@
+/* 
+  Localizable.strings
+  ResetNow
+
+  Created by ResetNow Team.
+*/
+
+// MARK: - General
+"app_name" = "ResetNow";
+"welcome_message" = "Welcome to ResetNow";
+"continue" = "Continue";
+"skip" = "Skip for now";
+"cancel" = "Cancel";
+"done" = "Done";
+
+// MARK: - Home / Journey
+"journey_title" = "My Journey";
+"greeting_morning" = "Good Morning";
+"greeting_afternoon" = "Good Afternoon";
+"greeting_evening" = "Good Evening";
+"greeting_night" = "Good Night";
+"greeting_generic" = "Hello";
+"help_prompt" = "What would help you today?";
+"day_streak" = "day streak";
+"resets_count" = "resets";
+"panic_button_title" = "PANIC BUTTON";
+"panic_button_subtitle" = "Tap for immediate support & resources";
+"reset_tools_title" = "Reset Tools";
+"recent_activity_title" = "Recent Activity";
+"empty_activity_title" = "Your journey starts here";
+"empty_activity_subtitle" = "Try a reset tool above to begin";
+
+// MARK: - Tools
+"tool_learn" = "Learn";
+"tool_learn_desc" = "Understand anxiety & stress";
+"tool_breathe" = "Breathe";
+"tool_breathe_desc" = "Calming breathwork";
+"tool_games" = "Games";
+"tool_games_desc" = "Distraction & focus";
+"tool_journal" = "Journal";
+"tool_journal_desc" = "Express your thoughts";
+"tool_visualize" = "Visualize";
+"tool_visualize_desc" = "Guided imagery";
+"tool_sleep" = "Sleep";
+"tool_sleep_desc" = "Wind down & rest";
+"tool_affirm" = "Affirm";
+"tool_affirm_desc" = "Positive reinforcement";
+"tool_journeys" = "Journeys";
+"tool_journeys_desc" = "Multi-day programs";
+
+// MARK: - Onboarding
+"onboarding_welcome_title" = "Welcome to";
+"onboarding_welcome_subtitle" = "Your pocket companion for calm";
+"onboarding_begin_button" = "Let's Begin";
+"onboarding_name_title" = "What should I call you?";
+"onboarding_name_subtitle" = "We'll use this to personalize your experience";
+"onboarding_name_placeholder" = "Your first name";
+"onboarding_mood_title" = "How are you feeling?";
+"onboarding_mood_subtitle" = "This helps us personalize your experience";
+"onboarding_age_title" = "What's your age group?";
+"onboarding_age_subtitle" = "We'll tailor the experience for you";
+"onboarding_concerns_title" = "What brings you here?";
+"onboarding_concerns_subtitle" = "Select all that apply";
+"onboarding_goals_title" = "What are your goals?";
+"onboarding_goals_subtitle" = "We'll help you track progress";
+"onboarding_disclaimer_title" = "You're all set!";
+"onboarding_disclaimer_subtitle" = "Just one more thing... ";
+"onboarding_important" = "Important";
+"onboarding_disclaimer_text1" = "ResetNow is a wellness companion, not a medical service. It does not provide medical advice, diagnosis, or treatment.";
+"onboarding_disclaimer_text2" = "If you're experiencing a mental health emergency, please contact emergency services (911) or the 988 Suicide & Crisis Lifeline.";
+"onboarding_accept_button" = "I Understand";
+
+// MARK: - Accessibility
+"a11y_mood_button_hint" = "Double tap to select this mood";
+"a11y_tool_card_hint" = "Double tap to open tool";
+"a11y_panic_button_hint" = "Double tap for emergency resources";
