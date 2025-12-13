@@ -9,7 +9,9 @@ import SwiftUI
 
 struct VisualizeView: View {
     @State private var selectedVisualization: Visualization?
+    @State private var showPaywall = false
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var storeManager: StoreManager
     
     var body: some View {
         ScrollView {
@@ -37,6 +39,9 @@ struct VisualizeView: View {
         .navigationBarTitleDisplayMode(.large)
         .sheet(item: $selectedVisualization) { visualization in
             VisualizationSessionView(visualization: visualization)
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
     
@@ -128,8 +133,12 @@ struct VisualizeView: View {
                         .padding(.horizontal, 4)
                     
                     ForEach(Visualization.samples.filter { $0.category == category }) { visualization in
-                        VisualizationCard(visualization: visualization) {
-                            selectedVisualization = visualization
+                        VisualizationCard(visualization: visualization, isLocked: visualization.isPremium && !storeManager.hasPremiumAccess) {
+                            if visualization.isPremium && !storeManager.hasPremiumAccess {
+                                showPaywall = true
+                            } else {
+                                selectedVisualization = visualization
+                            }
                         }
                     }
                 }
@@ -151,17 +160,11 @@ struct VisualizeView: View {
 // MARK: - Visualization Card
 struct VisualizationCard: View {
     let visualization: Visualization
+    let isLocked: Bool
     let action: () -> Void
     
     var body: some View {
-        Button(action: {
-            if !visualization.isPremium {
-                action()
-            } else {
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.warning)
-            }
-        }) {
+        Button(action: action) {
             HStack(spacing: ResetSpacing.md) {
                 // Icon
                 ZStack {
@@ -180,7 +183,7 @@ struct VisualizationCard: View {
                             .font(ResetTypography.heading(16))
                             .foregroundColor(.primary)
                         
-                        if visualization.isPremium {
+                        if isLocked {
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 12))
                                 .foregroundColor(.secondary)

@@ -92,13 +92,13 @@ final class AppState: ObservableObject {
         
         switch hour {
         case 5..<12:
-            timeGreeting = "Good morning"
+            timeGreeting = NSLocalizedString("greeting_morning", comment: "Morning greeting")
         case 12..<17:
-            timeGreeting = "Good afternoon"
+            timeGreeting = NSLocalizedString("greeting_afternoon", comment: "Afternoon greeting")
         case 17..<21:
-            timeGreeting = "Good evening"
+            timeGreeting = NSLocalizedString("greeting_evening", comment: "Evening greeting")
         default:
-            timeGreeting = "Hello"
+            timeGreeting = NSLocalizedString("greeting_generic", comment: "Generic greeting")
         }
         
         if userDisplayName.isEmpty {

@@ -26,6 +26,14 @@ struct SettingsView: View {
         case system = "System"
         case light = "Light"
         case dark = "Dark"
+        
+        var localizedName: LocalizedStringKey {
+            switch self {
+            case .system: return "settings_appearance_system"
+            case .light: return "settings_appearance_light"
+            case .dark: return "settings_appearance_dark"
+            }
+        }
     }
     
     var body: some View {
@@ -55,7 +63,7 @@ struct SettingsView: View {
             .listStyle(.insetGrouped)
             .background(SemanticColors.background(colorScheme).ignoresSafeArea())
             .scrollContentBackground(.hidden)
-            .navigationTitle("Settings")
+            .navigationTitle("settings_title")
             .navigationBarTitleDisplayMode(.large)
         }
         .sheet(isPresented: $showSOSResources) {
@@ -73,7 +81,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "heart.fill",
                     iconColor: .affirmColor,
-                    title: "Daily Affirmation"
+                    title: "settings_daily_affirmation"
                 )
             }
             .tint(.calmSage)
@@ -82,12 +90,12 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "bell.fill",
                     iconColor: .warmPeach,
-                    title: "Daily Reset Reminder"
+                    title: "settings_daily_reminder"
                 )
             }
             .tint(.calmSage)
         } header: {
-            Text("Notifications")
+            Text("settings_notifications")
                 .font(ResetTypography.caption(12))
         }
     }
@@ -99,7 +107,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "speaker.wave.2.fill",
                     iconColor: .gentleSky,
-                    title: "Sounds"
+                    title: "settings_sounds"
                 )
             }
             .tint(.calmSage)
@@ -108,27 +116,27 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "iphone.radiowaves.left.and.right",
                     iconColor: .softLavender,
-                    title: "Haptic Feedback"
+                    title: "settings_haptics"
                 )
             }
             .tint(.calmSage)
             
             Picker(selection: $selectedAppearance) {
                 ForEach(AppearanceMode.allCases, id: \.self) { mode in
-                    Text(mode.rawValue).tag(mode)
+                    Text(mode.localizedName).tag(mode)
                 }
             } label: {
                 SettingsRow(
                     icon: "moon.stars.fill",
                     iconColor: .sleepColor,
-                    title: "Appearance"
+                    title: "settings_appearance"
                 )
             }
             .onChange(of: selectedAppearance) { oldValue, newValue in
                 updateAppearance(newValue)
             }
         } header: {
-            Text("Experience")
+            Text("settings_experience")
                 .font(ResetTypography.caption(12))
         }
     }
@@ -140,12 +148,12 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "heart.circle.fill",
                     iconColor: .sosRed,
-                    title: "Crisis Resources",
+                    title: "settings_crisis_resources",
                     showChevron: true
                 )
             }
         } header: {
-            Text("Safety")
+            Text("settings_safety")
                 .font(ResetTypography.caption(12))
         }
     }
@@ -159,7 +167,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "cross.case.fill",
                     iconColor: .calmSage,
-                    title: "Medical Sources & Citations"
+                    title: "settings_medical_sources"
                 )
             }
             
@@ -169,14 +177,14 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "doc.text.fill",
                     iconColor: .learnColor,
-                    title: "Research References"
+                    title: "settings_research"
                 )
             }
         } header: {
-            Text("Evidence & Sources")
+            Text("settings_evidence")
                 .font(ResetTypography.caption(12))
         } footer: {
-            Text("ResetNow's techniques are based on evidence-based research from reputable medical and academic sources.")
+            Text("settings_evidence_footer")
                 .font(ResetTypography.caption(11))
         }
     }
@@ -188,7 +196,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "lock.shield.fill",
                     iconColor: .calmSage,
-                    title: "Privacy Policy",
+                    title: "settings_privacy",
                     showChevron: true
                 )
             }
@@ -197,12 +205,12 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "doc.text.fill",
                     iconColor: .warmGray,
-                    title: "Terms of Use",
+                    title: "settings_terms",
                     showChevron: true
                 )
             }
         } header: {
-            Text("Legal")
+            Text("settings_legal")
                 .font(ResetTypography.caption(12))
         }
     }
@@ -216,7 +224,7 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "questionmark.circle.fill",
                     iconColor: .gentleSky,
-                    title: "Support & Contact"
+                    title: "settings_support"
                 )
             }
             
@@ -226,11 +234,11 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "info.circle.fill",
                     iconColor: .learnColor,
-                    title: "About ResetNow"
+                    title: "settings_about"
                 )
             }
         } header: {
-            Text("Help & About")
+            Text("settings_help")
                 .font(ResetTypography.caption(12))
         }
     }
@@ -247,7 +255,7 @@ struct SettingsView: View {
                     .font(ResetTypography.caption(12))
                     .foregroundColor(.secondary)
                 
-                Text("Made with 💚 for your wellbeing")
+                Text("settings_made_with_love")
                     .font(ResetTypography.caption(12))
                     .foregroundColor(.secondary)
             }
@@ -260,16 +268,16 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "arrow.counterclockwise",
                     iconColor: .warmPeach,
-                    title: "Replay Onboarding"
+                    title: "settings_replay_onboarding"
                 )
             }
-            .confirmationDialog("Reset App?", isPresented: $showResetConfirmation) {
-                Button("Reset & Show Onboarding", role: .destructive) {
+            .confirmationDialog("settings_reset_confirm_title", isPresented: $showResetConfirmation) {
+                Button("settings_reset_confirm_action", role: .destructive) {
                     appState.resetForTesting()
                 }
                 Button("Cancel", role: .cancel) {}
             } message: {
-                Text("This will reset the app and show the onboarding again.")
+                Text("settings_reset_confirm_message")
             }
         }
     }
@@ -313,7 +321,7 @@ struct SettingsRow: View {
     @Environment(\.colorScheme) var colorScheme
     let icon: String
     let iconColor: Color
-    let title: String
+    let title: LocalizedStringKey
     var showChevron: Bool = false
     
     var body: some View {
@@ -359,7 +367,7 @@ struct AboutView: View {
                         .font(ResetTypography.display(28))
                         .foregroundColor(.primary)
                     
-                    Text("Your companion for calm")
+                    Text("about_tagline")
                         .font(ResetTypography.body(16))
                         .foregroundColor(.secondary)
                 }
@@ -367,11 +375,11 @@ struct AboutView: View {
                 
                 // Mission
                 VStack(alignment: .leading, spacing: ResetSpacing.md) {
-                    Text("Our Mission")
+                    Text("about_mission_title")
                         .font(ResetTypography.heading(20))
                         .foregroundColor(.primary)
                     
-                    Text("ResetNow helps you de-escalate anxiety in 1-5 minutes with simple, gentle tools. We believe everyone deserves access to calm, and that small moments of self-care can transform your relationship with stress.")
+                    Text("about_mission_text")
                         .font(ResetTypography.body(15))
                         .foregroundColor(.secondary)
                         .lineSpacing(4)
@@ -381,25 +389,25 @@ struct AboutView: View {
                 
                 // Values
                 VStack(alignment: .leading, spacing: ResetSpacing.md) {
-                    Text("Our Values")
+                    Text("about_values_title")
                         .font(ResetTypography.heading(20))
                         .foregroundColor(.primary)
                     
-                    ValueRow(icon: "heart.fill", color: .softRose, text: "Compassion over judgment")
-                    ValueRow(icon: "lock.shield.fill", color: .calmSage, text: "Privacy by design")
-                    ValueRow(icon: "accessibility", color: .gentleSky, text: "Accessible to all")
-                    ValueRow(icon: "sparkles", color: .warmPeach, text: "Simplicity in everything")
+                    ValueRow(icon: "heart.fill", color: .softRose, text: "about_value_compassion")
+                    ValueRow(icon: "lock.shield.fill", color: .calmSage, text: "about_value_privacy")
+                    ValueRow(icon: "accessibility", color: .gentleSky, text: "about_value_access")
+                    ValueRow(icon: "sparkles", color: .warmPeach, text: "about_value_simplicity")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, ResetSpacing.md)
                 
                 // Disclaimer
                 VStack(spacing: ResetSpacing.md) {
-                    Text("Important Note")
+                    Text("about_important_note")
                         .font(ResetTypography.heading(16))
                         .foregroundColor(.primary)
                     
-                    Text("ResetNow provides general wellbeing and educational information only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified health provider with any questions you may have regarding a medical condition. If you're experiencing a mental health crisis, please contact emergency services or a crisis helpline.")
+                    Text("about_disclaimer")
                         .font(ResetTypography.caption(13))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -423,7 +431,7 @@ struct AboutView: View {
 struct ValueRow: View {
     let icon: String
     let color: Color
-    let text: String
+    let text: LocalizedStringKey
     
     var body: some View {
         HStack(spacing: ResetSpacing.md) {

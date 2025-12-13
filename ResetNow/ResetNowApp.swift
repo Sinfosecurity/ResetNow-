@@ -12,6 +12,7 @@ struct ResetNowApp: App {
     @StateObject private var appState = AppState()
     @StateObject private var persistence = PersistenceController.shared
     @StateObject private var audioService = AudioService.shared
+    @StateObject private var storeManager = StoreManager.shared
     
     init() {
         // OpenAI API key is securely stored in iOS Keychain
@@ -38,6 +39,10 @@ struct ResetNowApp: App {
                         .environmentObject(appState)
                         .environmentObject(persistence)
                         .environmentObject(audioService)
+                        .environmentObject(storeManager)
+                        .task {
+                            await storeManager.loadProducts()
+                        }
                         .preferredColorScheme(colorScheme)
                         .onOpenURL { url in
                             handleDeepLink(url)
@@ -109,16 +114,4 @@ struct ResetNowApp: App {
     }
 }
 
-/*
- NOTE: ResetNow v1.0 is a completely FREE app.
- 
- There are NO in-app purchases, subscriptions, or "Pro" features in this version.
- All content is available to all users at no cost.
- 
- Future versions may add premium features - that implementation would require:
- - StoreKit integration
- - App Store Connect product setup
- - Paywall UI
- - Restore Purchases functionality
- - Receipt validation
- */
+

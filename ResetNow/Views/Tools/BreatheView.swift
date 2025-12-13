@@ -10,6 +10,8 @@ import SwiftUI
 struct BreatheView: View {
     @State private var selectedExercise: BreathingExercise?
     @State private var showExerciseDetail = false
+    @StateObject private var storeManager = StoreManager.shared
+    @State private var showPaywall = false
     
     var body: some View {
         ScrollView {
@@ -28,6 +30,9 @@ struct BreatheView: View {
         .navigationBarTitleDisplayMode(.large)
         .sheet(item: $selectedExercise) { exercise in
             BreathingSessionView(exercise: exercise)
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
     
@@ -48,8 +53,12 @@ struct BreatheView: View {
     private var exerciseListSection: some View {
         VStack(spacing: ResetSpacing.md) {
             ForEach(BreathingExercise.presets) { exercise in
-                BreathingExerciseCard(exercise: exercise) {
-                    selectedExercise = exercise
+                BreathingExerciseCard(exercise: exercise, isLocked: exercise.isPremium && !storeManager.hasPremiumAccess) {
+                    if exercise.isPremium && !storeManager.hasPremiumAccess {
+                         showPaywall = true
+                    } else {
+                        selectedExercise = exercise
+                    }
                 }
             }
         }
@@ -70,7 +79,14 @@ struct BreatheView: View {
 // MARK: - Breathing Exercise Card
 struct BreathingExerciseCard: View {
     let exercise: BreathingExercise
+    let isLocked: Bool
     let action: () -> Void
+    
+    init(exercise: BreathingExercise, isLocked: Bool = false, action: @escaping () -> Void) {
+        self.exercise = exercise
+        self.isLocked = isLocked
+        self.action = action
+    }
     
     var body: some View {
         Button(action: action) {
@@ -80,9 +96,17 @@ struct BreathingExerciseCard: View {
                     .frame(width: 50, height: 50)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(exercise.name)
-                        .font(ResetTypography.heading(16))
-                        .foregroundColor(.primary)
+                    HStack(spacing: 4) {
+                        Text(exercise.name)
+                            .font(ResetTypography.heading(16))
+                            .foregroundColor(.primary)
+                        
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary)
+                        }
+                    }
                     
                     Text(exercise.description)
                         .font(ResetTypography.caption(13))
@@ -107,7 +131,7 @@ struct BreathingExerciseCard: View {
                 
                 Image(systemName: "play.circle.fill")
                     .font(.system(size: 32))
-                    .foregroundColor(.calmSage)
+                    .foregroundColor(isLocked ? .secondary.opacity(0.5) : .calmSage)
             }
             .padding(ResetSpacing.md)
             .background(

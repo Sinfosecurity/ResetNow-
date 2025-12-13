@@ -74,3 +74,46 @@
 "a11y_mood_button_hint" = "Double tap to select this mood";
 "a11y_tool_card_hint" = "Double tap to open tool";
 "a11y_panic_button_hint" = "Double tap for emergency resources";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_notifications" = "Notifications";
+"settings_daily_affirmation" = "Daily Affirmation";
+"settings_daily_reminder" = "Daily Reset Reminder";
+"settings_experience" = "Experience";
+"settings_sounds" = "Sounds";
+"settings_haptics" = "Haptic Feedback";
+"settings_appearance" = "Appearance";
+"settings_appearance_system" = "System";
+"settings_appearance_light" = "Light";
+"settings_appearance_dark" = "Dark";
+"settings_safety" = "Safety";
+"settings_crisis_resources" = "Crisis Resources";
+"settings_evidence" = "Evidence & Sources";
+"settings_medical_sources" = "Medical Sources & Citations";
+"settings_research" = "Research References";
+"settings_evidence_footer" = "ResetNow's techniques are based on evidence-based research from reputable medical and academic sources.";
+"settings_legal" = "Legal";
+"settings_privacy" = "Privacy Policy";
+"settings_terms" = "Terms of Use";
+"settings_help" = "Help & About";
+"settings_support" = "Support & Contact";
+"settings_about" = "About ResetNow";
+"settings_made_with_love" = "Made with 💚 for your wellbeing";
+"settings_replay_onboarding" = "Replay Onboarding";
+"settings_reset_confirm_title" = "Reset App?";
+"settings_reset_confirm_action" = "Reset & Show Onboarding";
+"settings_reset_confirm_message" = "This will reset the app and show the onboarding again.";
+
+// MARK: - About View
+"about_tagline" = "Your companion for calm";
+"about_mission_title" = "Our Mission";
+"about_mission_text" = "ResetNow helps you de-escalate anxiety in 1-5 minutes with simple, gentle tools. We believe everyone deserves access to calm, and that small moments of self-care can transform your relationship with stress.";
+"about_values_title" = "Our Values";
+"about_value_compassion" = "Compassion over judgment";
+"about_value_privacy" = "Privacy by design";
+"about_value_access" = "Accessible to all";
+"about_value_simplicity" = "Simplicity in everything";
+"about_important_note" = "Important Note";
+"about_disclaimer" = "ResetNow provides general wellbeing and educational information only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified health provider with any questions you may have regarding a medical condition. If you're experiencing a mental health crisis, please contact emergency services or a crisis helpline.";
+

@@ -10,7 +10,9 @@ import AVFoundation
 
 struct SleepView: View {
     @State private var selectedTrack: SleepTrack?
+    @State private var showPaywall = false
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var storeManager: StoreManager
     
     var body: some View {
         ScrollView {
@@ -20,8 +22,12 @@ struct SleepView: View {
                 
                 // Featured track
                 if let featured = SleepTrack.samples.first {
-                    FeaturedSleepCard(track: featured) {
-                        selectedTrack = featured
+                    FeaturedSleepCard(track: featured, isLocked: featured.isPremium && !storeManager.hasPremiumAccess) {
+                        if featured.isPremium && !storeManager.hasPremiumAccess {
+                            showPaywall = true
+                        } else {
+                            selectedTrack = featured
+                        }
                     }
                 }
                 
@@ -42,6 +48,9 @@ struct SleepView: View {
         .navigationBarTitleDisplayMode(.large)
         .sheet(item: $selectedTrack) { track in
             SleepPlayerView(track: track)
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
     
@@ -66,8 +75,12 @@ struct SleepView: View {
                 .foregroundColor(.white)
             
             ForEach(SleepTrack.samples) { track in
-                SleepTrackRow(track: track) {
-                    selectedTrack = track
+                SleepTrackRow(track: track, isLocked: track.isPremium && !storeManager.hasPremiumAccess) {
+                    if track.isPremium && !storeManager.hasPremiumAccess {
+                        showPaywall = true
+                    } else {
+                        selectedTrack = track
+                    }
                 }
             }
         }
@@ -81,6 +94,7 @@ struct SleepView: View {
 // MARK: - Featured Sleep Card
 struct FeaturedSleepCard: View {
     let track: SleepTrack
+    let isLocked: Bool
     let action: () -> Void
     
     @State private var animateStars = false
@@ -127,6 +141,14 @@ struct FeaturedSleepCard: View {
                                 Capsule()
                                     .fill(Color.white.opacity(0.2))
                             )
+                        
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 16))
+                                .foregroundColor(.white.opacity(0.8))
+                                .padding(8)
+                                .background(Circle().fill(Color.black.opacity(0.3)))
+                        }
                     }
                     
                     Spacer()
@@ -203,6 +225,7 @@ struct StarsOverlay: View {
 // MARK: - Sleep Track Row
 struct SleepTrackRow: View {
     let track: SleepTrack
+    let isLocked: Bool
     let action: () -> Void
     
     var body: some View {
@@ -226,12 +249,16 @@ struct SleepTrackRow: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    HStack {
+                    HStack(spacing: 4) {
                         Text(track.name)
                             .font(ResetTypography.heading(16))
                             .foregroundColor(.white)
                         
-
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(.white.opacity(0.7))
+                        }
                     }
                     
                     Text(track.description)
@@ -272,6 +299,8 @@ struct SleepTrackRow: View {
                             .stroke(Color.white.opacity(0.1), lineWidth: 1)
                     )
             )
+
+            .contentShape(Rectangle()) // Ensure full row is tappable
         }
         .accessibilityLabel("\(track.name), \(formatDuration(track.durationMinutes))")
         .accessibilityHint("Double tap to play")

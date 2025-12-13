@@ -457,8 +457,36 @@ struct Lesson: Identifiable, Codable {
     let keyPoints: [String]
     let tryThis: String
     
-    // Backwards compatibility
-    var isPremium: Bool { false }
+    init(
+        id: UUID,
+        title: String,
+        iconName: String,
+        summary: String,
+        body: String,
+        estimatedMinutes: Int,
+        category: LessonCategory,
+        isComingSoon: Bool,
+        sources: [String],
+        keyPoints: [String],
+        tryThis: String,
+        isPremium: Bool = false
+    ) {
+        self.id = id
+        self.title = title
+        self.iconName = iconName
+        self.summary = summary
+        self.body = body
+        self.estimatedMinutes = estimatedMinutes
+        self.category = category
+        self.isComingSoon = isComingSoon
+        self.sources = sources
+        self.keyPoints = keyPoints
+        self.tryThis = tryThis
+        self.isPremium = isPremium
+    }
+    
+    // Access Control
+    var isPremium: Bool = false
     
     enum LessonCategory: String, Codable, CaseIterable {
         case foundations = "Understanding Anxiety"
@@ -485,7 +513,8 @@ struct Lesson: Identifiable, Codable {
                 "The physical symptoms are your body preparing for action.",
                 "Understanding this mechanism reduces the fear of fear."
             ],
-            tryThis: "Next time you feel anxious, say to yourself: \"Thank you brain for trying to protect me, but I am safe right now.\""
+            tryThis: "Next time you feel anxious, say to yourself: \"Thank you brain for trying to protect me, but I am safe right now.\"",
+            isPremium: false
         ),
         Lesson(
             id: UUID(),
@@ -504,7 +533,8 @@ struct Lesson: Identifiable, Codable {
                 "Panic feels physical and intense; anxiety feels mental and worried.",
                 "Both are treatable and temporary states."
             ],
-            tryThis: "Create a \"Panic Plan\" note on your phone listing 3 people to call and 3 soothing songs to play if panic strikes."
+            tryThis: "Create a \"Panic Plan\" note on your phone listing 3 people to call and 3 soothing songs to play if panic strikes.",
+            isPremium: false
         ),
 
         Lesson(
@@ -524,7 +554,8 @@ struct Lesson: Identifiable, Codable {
                 "You can manually engage the brake using your breath.",
                 "Your body cannot be in both states at the exact same time."
             ],
-            tryThis: "Splash cold water on your face to trigger the \"Mammalian Dive Reflex\", which instantly activates your parasympathetic nervous system."
+            tryThis: "Splash cold water on your face to trigger the \"Mammalian Dive Reflex\", which instantly activates your parasympathetic nervous system.",
+            isPremium: false
         ),
         Lesson(
             id: UUID(),
@@ -543,7 +574,8 @@ struct Lesson: Identifiable, Codable {
                 "Slowing your breath directly slows your heart rate.",
                 "Consistency matters more than perfect technique."
             ],
-            tryThis: "Place one hand on your chest and one on your belly. Breathe so only the belly hand moves."
+            tryThis: "Place one hand on your chest and one on your belly. Breathe so only the belly hand moves.",
+            isPremium: false
         ),
         Lesson(
             id: UUID(),
@@ -562,7 +594,8 @@ struct Lesson: Identifiable, Codable {
                 "Vision might blur or tunnel as pupils dilate.",
                 "These are survival mechanisms, not signs of illness."
             ],
-            tryThis: "Do a quick body scan. Squeeze your fists tight for 5 seconds, then release. Notice the difference between tension and relaxation."
+            tryThis: "Do a quick body scan. Squeeze your fists tight for 5 seconds, then release. Notice the difference between tension and relaxation.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -581,7 +614,8 @@ struct Lesson: Identifiable, Codable {
                 "Racing thoughts are the brain searching for a solution.",
                 "Worry gives a false sense of control over the future."
             ],
-            tryThis: "Write down your worry. Then write down the \"Best Case\", \"Worst Case\", and \"Most Likely\" outcomes."
+            tryThis: "Write down your worry. Then write down the \"Best Case\", \"Worst Case\", and \"Most Likely\" outcomes.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -600,7 +634,8 @@ struct Lesson: Identifiable, Codable {
                 "Personality traits like perfectionism can contribute.",
                 "It is not a sign of weakness or failure."
             ],
-            tryThis: "Draw a simple timeline of your life. Mark when your anxiety felt highest and lowest. Look for patterns."
+            tryThis: "Draw a simple timeline of your life. Mark when your anxiety felt highest and lowest. Look for patterns.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -619,7 +654,8 @@ struct Lesson: Identifiable, Codable {
                 "You don't have to do this alone.",
                 "Patience with yourself is crucial."
             ],
-            tryThis: "Set one tiny, achievable goal for today (e.g., \"Drink one glass of water\", \"Walk for 5 minutes\")."
+            tryThis: "Set one tiny, achievable goal for today (e.g., \"Drink one glass of water\", \"Walk for 5 minutes\").",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -638,7 +674,8 @@ struct Lesson: Identifiable, Codable {
                 "Fighting the panic often prolongs it.",
                 "Riding the wave is scary but effective."
             ],
-            tryThis: "Visualize the panic as a wave. Instead of trying to stop the wave, imagine surfing over it until it reaches the shore."
+            tryThis: "Visualize the panic as a wave. Instead of trying to stop the wave, imagine surfing over it until it reaches the shore.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -657,7 +694,8 @@ struct Lesson: Identifiable, Codable {
                 "Physical symptoms reinforce the belief that danger is real.",
                 "You can retrain this alarm system over time."
             ],
-            tryThis: "Name the false alarm. When you feel a symptom, say out loud: \"This is just adrenaline. It is uncomfortable, but not dangerous.\""
+            tryThis: "Name the false alarm. When you feel a symptom, say out loud: \"This is just adrenaline. It is uncomfortable, but not dangerous.\"",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -676,7 +714,8 @@ struct Lesson: Identifiable, Codable {
                 "Myth: You will always feel this way. Fact: Anxiety is highly treatable.",
                 "Myth: Avoiding triggers cures anxiety. Fact: Avoidance feeds anxiety."
             ],
-            tryThis: "Identify one myth you've believed about your own anxiety. Write down the counter-fact."
+            tryThis: "Identify one myth you've believed about your own anxiety. Write down the counter-fact.",
+            isPremium: true
         ),
 
         // CATEGORY 2: Short-Term Relief Skills (Immediate Calm)
@@ -697,7 +736,8 @@ struct Lesson: Identifiable, Codable {
                 "Mental games can distract the amygdala.",
                 "It works best when practiced before high anxiety hits."
             ],
-            tryThis: "Hold an ice cube in your hand. Focus entirely on the sensation of cold and melting water."
+            tryThis: "Hold an ice cube in your hand. Focus entirely on the sensation of cold and melting water.",
+            isPremium: false
         ),
         Lesson(
             id: UUID(),
@@ -716,7 +756,8 @@ struct Lesson: Identifiable, Codable {
                 "Breathe through your nose, not your mouth.",
                 "Use the \"Breathe\" tab for guided pacing."
             ],
-            tryThis: "Go to the \"Breathe\" tab and complete one 2-minute session of \"Simple Calm\"."
+            tryThis: "Go to the \"Breathe\" tab and complete one 2-minute session of \"Simple Calm\".",
+            isPremium: false
         ),
         Lesson(
             id: UUID(),
@@ -735,7 +776,8 @@ struct Lesson: Identifiable, Codable {
                 "Replace \"What if\" with \"Even if\".",
                 "View the situation as a challenge, not a threat."
             ],
-            tryThis: "Change \"I can't handle this\" to \"This is hard, but I have handled hard things before.\""
+            tryThis: "Change \"I can't handle this\" to \"This is hard, but I have handled hard things before.\"",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -754,7 +796,8 @@ struct Lesson: Identifiable, Codable {
                 "Return to this spot whenever you feel overwhelmed.",
                 "Practice visiting it when you are calm first."
             ],
-            tryThis: "Close your eyes for 1 minute. Imagine sitting on a warm beach. Feel the sun on your skin and hear the waves."
+            tryThis: "Close your eyes for 1 minute. Imagine sitting on a warm beach. Feel the sun on your skin and hear the waves.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -773,7 +816,8 @@ struct Lesson: Identifiable, Codable {
                 "Blue light disrupts sleep and mood.",
                 "Real connection happens offline."
             ],
-            tryThis: "Unfollow 3 accounts that make you feel inadequate or anxious. Follow 3 that make you feel calm or inspired."
+            tryThis: "Unfollow 3 accounts that make you feel inadequate or anxious. Follow 3 that make you feel calm or inspired.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -792,7 +836,8 @@ struct Lesson: Identifiable, Codable {
                 "Hydration is essential for clear thinking.",
                 "Magnesium-rich foods can support relaxation."
             ],
-            tryThis: "Swap your second cup of coffee for herbal tea or water today and notice if your jitteriness decreases."
+            tryThis: "Swap your second cup of coffee for herbal tea or water today and notice if your jitteriness decreases.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -811,7 +856,8 @@ struct Lesson: Identifiable, Codable {
                 "It improves sleep quality.",
                 "You don't need a gym; walking works wonders."
             ],
-            tryThis: "Put on your favorite upbeat song and dance or shake your body for the entire duration of the track."
+            tryThis: "Put on your favorite upbeat song and dance or shake your body for the entire duration of the track.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -830,7 +876,8 @@ struct Lesson: Identifiable, Codable {
                 "If you can't sleep, get up and do something boring.",
                 "Your bed is for sleep, not worrying."
             ],
-            tryThis: "Tonight, charge your phone in another room (or across the room) so it's not the last thing you see."
+            tryThis: "Tonight, charge your phone in another room (or across the room) so it's not the last thing you see.",
+            isPremium: true
         ),
         Lesson(
             id: UUID(),
@@ -850,8 +897,10 @@ struct Lesson: Identifiable, Codable {
                 "1 thing you can TASTE.",
                 "Say them out loud if possible."
             ],
-            tryThis: "Look around right now. Find 5 blue objects in your environment."
+            tryThis: "Look around right now. Find 5 blue objects in your environment.",
+            isPremium: true
         ),
+
         Lesson(
             id: UUID(),
             title: "Sensory Reset",
@@ -1120,27 +1169,27 @@ struct BreathingExercise: Identifiable, Codable {
         inhaleSeconds + holdTopSeconds + exhaleSeconds + holdBottomSeconds
     }
     
-    // Backwards compatibility with views
-    var isPremium: Bool { false }
+    var isPremium: Bool = true // Default to locked
     
     static let presets: [BreathingExercise] = [
-        BreathingExercise(id: UUID(), name: "Box Breathing", description: "Equal inhale, hold, exhale, hold. Used for calm under pressure.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 4, holdBottomSeconds: 4, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "4-7-8 Relaxation", description: "Dr. Weil's technique for sleep and anxiety.", inhaleSeconds: 4, holdTopSeconds: 7, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Simple Calm", description: "Gentle inhale and exhale. Perfect for beginners.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 120, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Energizing Breath", description: "Quick cycles to boost energy and alertness.", inhaleSeconds: 3, holdTopSeconds: 0, exhaleSeconds: 3, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Deep Sleep Breath", description: "Extended exhale pattern for rest.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 10, holdBottomSeconds: 2, defaultDurationSeconds: 300, isComingSoon: false),
+        // Free Essentials
+        BreathingExercise(id: UUID(), name: "Box Breathing", description: "Equal inhale, hold, exhale, hold. Used for calm under pressure.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 4, holdBottomSeconds: 4, defaultDurationSeconds: 180, isComingSoon: false, isPremium: false),
+        BreathingExercise(id: UUID(), name: "4-7-8 Relaxation", description: "Dr. Weil's technique for sleep and anxiety.", inhaleSeconds: 4, holdTopSeconds: 7, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: false),
+        BreathingExercise(id: UUID(), name: "Simple Calm", description: "Gentle inhale and exhale. Perfect for beginners.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 120, isComingSoon: false, isPremium: false),
         
-        // New Techniques
-        BreathingExercise(id: UUID(), name: "Resonant Breathing", description: "A steady, balanced rhythm that helps your mind and body return to equilibrium.", inhaleSeconds: 5, holdTopSeconds: 0, exhaleSeconds: 5, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Slow Release Breath", description: "A calm inhale paired with a long, controlled exhale to settle your nervous system.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Focus Booster", description: "A simple pattern designed to sharpen attention and bring clarity.", inhaleSeconds: 3, holdTopSeconds: 3, exhaleSeconds: 3, holdBottomSeconds: 1, defaultDurationSeconds: 120, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Gentle Wave Breath", description: "Smooth, flowing breaths that mimic the rise and fall of gentle ocean waves.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Stress Reset Breath", description: "A grounding technique for breaking the stress cycle and easing tension.", inhaleSeconds: 4, holdTopSeconds: 1, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Energy Lift Breath", description: "Short active cycles to help you feel more awake and alert.", inhaleSeconds: 2, holdTopSeconds: 0, exhaleSeconds: 2, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Heart-Calm Rhythm", description: "A soothing pattern that encourages a calmer heartbeat and quieter mind.", inhaleSeconds: 6, holdTopSeconds: 0, exhaleSeconds: 4, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Nervous System Reset", description: "A balanced breath structure designed to activate your parasympathetic response.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Deep Release Breath", description: "A long, gentle exhale that allows the body to release held stress.", inhaleSeconds: 4, holdTopSeconds: 2, exhaleSeconds: 10, holdBottomSeconds: 0, defaultDurationSeconds: 300, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Quiet Mind Breath", description: "A soft, slowed breath pattern to calm racing thoughts and reduce internal noise.", inhaleSeconds: 3, holdTopSeconds: 3, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false)
+        // Premium Techniques
+        BreathingExercise(id: UUID(), name: "Energizing Breath", description: "Quick cycles to boost energy and alertness.", inhaleSeconds: 3, holdTopSeconds: 0, exhaleSeconds: 3, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Deep Sleep Breath", description: "Extended exhale pattern for rest.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 10, holdBottomSeconds: 2, defaultDurationSeconds: 300, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Resonant Breathing", description: "A steady, balanced rhythm that helps your mind and body return to equilibrium.", inhaleSeconds: 5, holdTopSeconds: 0, exhaleSeconds: 5, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Slow Release Breath", description: "A calm inhale paired with a long, controlled exhale to settle your nervous system.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Focus Booster", description: "A simple pattern designed to sharpen attention and bring clarity.", inhaleSeconds: 3, holdTopSeconds: 3, exhaleSeconds: 3, holdBottomSeconds: 1, defaultDurationSeconds: 120, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Gentle Wave Breath", description: "Smooth, flowing breaths that mimic the rise and fall of gentle ocean waves.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Stress Reset Breath", description: "A grounding technique for breaking the stress cycle and easing tension.", inhaleSeconds: 4, holdTopSeconds: 1, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Energy Lift Breath", description: "Short active cycles to help you feel more awake and alert.", inhaleSeconds: 2, holdTopSeconds: 0, exhaleSeconds: 2, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Heart-Calm Rhythm", description: "A soothing pattern that encourages a calmer heartbeat and quieter mind.", inhaleSeconds: 6, holdTopSeconds: 0, exhaleSeconds: 4, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Nervous System Reset", description: "A balanced breath structure designed to activate your parasympathetic response.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Deep Release Breath", description: "A long, gentle exhale that allows the body to release held stress.", inhaleSeconds: 4, holdTopSeconds: 2, exhaleSeconds: 10, holdBottomSeconds: 0, defaultDurationSeconds: 300, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Quiet Mind Breath", description: "A soft, slowed breath pattern to calm racing thoughts and reduce internal noise.", inhaleSeconds: 3, holdTopSeconds: 3, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: true)
     ]
 }
 
@@ -1154,8 +1203,7 @@ struct CalmGame: Identifiable, Codable {
     let isLockedByProgress: Bool
     let unlockRequirement: Int?
     
-    // Backwards compatibility
-    var isPremium: Bool { false }
+    var isPremium: Bool = true // Default to locked
     
     enum GameType: String, Codable {
         case bubblePop = "bubble_pop"
@@ -1197,19 +1245,12 @@ struct CalmGame: Identifiable, Codable {
     }
     
     static let samples: [CalmGame] = [
-        CalmGame(id: UUID(), name: "Bubble Pop Calm", description: "Gently pop floating bubbles at your own pace", gameType: .bubblePop, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Calm Word", description: "Find peaceful words in letter grids", gameType: .calmWord, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Calm Memory", description: "Match calming images gently", gameType: .memory, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Thought Garden", description: "Plant and grow a peaceful digital garden", gameType: .thoughtGarden, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Rhythm Steps", description: "Tap along to soothing rhythms", gameType: .rhythmSteps, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Zen Stone Stacking", description: "Find balance by stacking stones", gameType: .zenStone, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Sand Garden", description: "Draw patterns in the sand", gameType: .sandGarden, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Koi Pond", description: "Interact with peaceful fish", gameType: .koiPond, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Tile Flow", description: "Connect the pipes to flow", gameType: .tileFlow, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Pottery Wheel", description: "Shape clay into beautiful forms", gameType: .pottery, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Rainy Window", description: "Clear the fog from the glass", gameType: .rainyWindow, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Mandala Color", description: "Fill patterns with calming colors", gameType: .mandala, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Constellations", description: "Connect stars to find shapes", gameType: .constellation, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil)
+        CalmGame(id: UUID(), name: "Bubble Pop Calm", description: "Gently pop floating bubbles at your own pace", gameType: .bubblePop, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: false),
+        CalmGame(id: UUID(), name: "Calm Word", description: "Find peaceful words in letter grids", gameType: .calmWord, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Calm Memory", description: "Match calming images gently", gameType: .memory, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Thought Garden", description: "Plant and grow a peaceful digital garden", gameType: .thoughtGarden, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Rhythm Steps", description: "Tap along to soothing rhythms", gameType: .rhythmSteps, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Mandala Color", description: "Fill patterns with calming colors", gameType: .mandala, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true)
     ]
 }
 
@@ -1222,9 +1263,7 @@ struct SleepTrack: Identifiable, Codable {
     let durationMinutes: Int
     let tags: [String]
     let isComingSoon: Bool
-    
-    // Backwards compatibility
-    var isPremium: Bool { false }
+    var isPremium: Bool = true // Default to locked
     
     var iconName: String {
         if tags.contains("rain") || tags.contains("storm") { return "cloud.rain.fill" }
@@ -1238,13 +1277,13 @@ struct SleepTrack: Identifiable, Codable {
     }
     
     static let samples: [SleepTrack] = [
-        SleepTrack(id: UUID(), name: "Midnight Forest", description: "A rich chorus of night crickets and owls", audioAssetName: "night_crickets_owls", durationMinutes: 480, tags: ["nature", "night", "forest"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Stormy Comfort", description: "Heavy rain and rolling thunder for deep sleep", audioAssetName: "rain_thunderstorm", durationMinutes: 480, tags: ["rain", "storm"], isComingSoon: false),
+        SleepTrack(id: UUID(), name: "Midnight Forest", description: "A rich chorus of night crickets and owls", audioAssetName: "night_crickets_owls", durationMinutes: 480, tags: ["nature", "night", "forest"], isComingSoon: false, isPremium: false),
+        SleepTrack(id: UUID(), name: "Stormy Comfort", description: "Heavy rain and rolling thunder for deep sleep", audioAssetName: "rain_thunderstorm", durationMinutes: 480, tags: ["rain", "storm"], isComingSoon: false, isPremium: true),
         SleepTrack(id: UUID(), name: "Deep Sleep Drift", description: "Instant deep sleep frequency", audioAssetName: "deep_sleep_instant", durationMinutes: 480, tags: ["noise", "sleep"], isComingSoon: false),
         SleepTrack(id: UUID(), name: "Hearthside Warmth", description: "Cozy crackling fire", audioAssetName: "fire_crackling", durationMinutes: 480, tags: ["fire", "cozy"], isComingSoon: false),
         SleepTrack(id: UUID(), name: "Summer Night", description: "Gentle crickets on a warm evening", audioAssetName: "nature_crickets", durationMinutes: 480, tags: ["nature", "night"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Ocean Serenity", description: "Calming waves hitting the shore", audioAssetName: "ocean_waves", durationMinutes: 480, tags: ["ocean", "nature"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Gentle Rain", description: "Soft, steady rainfall", audioAssetName: "relaxing_rain", durationMinutes: 480, tags: ["rain", "nature"], isComingSoon: false),
+        SleepTrack(id: UUID(), name: "Ocean Serenity", description: "Calming waves hitting the shore", audioAssetName: "ocean_waves", durationMinutes: 480, tags: ["ocean", "nature"], isComingSoon: false, isPremium: true),
+        SleepTrack(id: UUID(), name: "Gentle Rain", description: "Soft, steady rainfall", audioAssetName: "relaxing_rain", durationMinutes: 480, tags: ["rain", "nature"], isComingSoon: false, isPremium: false),
         SleepTrack(id: UUID(), name: "Deep Meditation Wave", description: "Soothing waves for deep focus", audioAssetName: "deep_meditation", durationMinutes: 480, tags: ["meditation", "focus"], isComingSoon: false),
         SleepTrack(id: UUID(), name: "Calm Flow", description: "Gentle background ambience", audioAssetName: "calming_sound", durationMinutes: 480, tags: ["music", "calm"], isComingSoon: false),
         SleepTrack(id: UUID(), name: "Stress Relief", description: "Melodic relief for anxious minds", audioAssetName: "stress_relief", durationMinutes: 480, tags: ["music", "relief"], isComingSoon: false),
@@ -1347,8 +1386,7 @@ struct Journey: Identifiable, Codable {
     let steps: [JourneyStep]
     let isComingSoon: Bool
     
-    // Backwards compatibility
-    var isPremium: Bool { false }
+    var isPremium: Bool = true
     
     var totalSteps: Int { steps.count }
     
@@ -1370,7 +1408,8 @@ struct Journey: Identifiable, Codable {
                 JourneyStep(id: UUID(), day: 6, orderIndex: 8, stepType: .breathe, refId: nil, title: "Box Breathing", instructions: "Master the navy seal technique"),
                 JourneyStep(id: UUID(), day: 7, orderIndex: 9, stepType: .journal, refId: nil, title: "Weekly Reflection", instructions: "Look back on your progress")
             ],
-            isComingSoon: false
+            isComingSoon: false,
+            isPremium: false // Free Intro Journey
         ),
         Journey(
             id: UUID(),
@@ -1383,7 +1422,9 @@ struct Journey: Identifiable, Codable {
                 JourneyStep(id: UUID(), day: 2, orderIndex: 2, stepType: .visualization, refId: nil, title: "Body Scan", instructions: "Release tension from your muscles"),
                 JourneyStep(id: UUID(), day: 3, orderIndex: 3, stepType: .journal, refId: nil, title: "Worry Dump", instructions: "Clear your mind before bed")
             ],
-            isComingSoon: false
+
+            isComingSoon: false,
+            isPremium: true
         )
     ]
 }
@@ -1508,10 +1549,10 @@ struct Visualization: Identifiable, Codable {
     let steps: [String]
     let audioFileName: String? // New property for audio support
     let isComingSoon: Bool
+    var isPremium: Bool = true // Default to locked
     
     // Backwards compatibility aliases
     var name: String { title }
-    var isPremium: Bool { false }
     
     enum VisualizationCategory: String, Codable, CaseIterable {
         case quickGrounding = "Quick Grounding"
@@ -1538,7 +1579,8 @@ struct Visualization: Identifiable, Codable {
                 "Take a deep breath. You are here, now, and safe."
             ],
             audioFileName: "grounding_calm", // Mapped to CALMING sound
-            isComingSoon: false
+            isComingSoon: false,
+            isPremium: false // Keep free as safety tool
         ),
         Visualization(
             id: UUID(),

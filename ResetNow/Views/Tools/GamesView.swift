@@ -9,7 +9,9 @@ import SwiftUI
 
 struct GamesView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var storeManager: StoreManager
     @State private var selectedGame: CalmGame?
+    @State private var showPaywall = false
     
     var body: some View {
         ScrollView {
@@ -36,6 +38,9 @@ struct GamesView: View {
         .sheet(item: $selectedGame) { game in
             GameSessionView(game: game)
         }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
     }
     
     private var headerSection: some View {
@@ -60,8 +65,10 @@ struct GamesView: View {
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(CalmGame.samples) { game in
-                    GameCard(game: game, totalSessions: appState.totalResets) {
-                        if !game.isComingSoon {
+                    GameCard(game: game, totalSessions: appState.totalResets, isLocked: game.isPremium && !storeManager.hasPremiumAccess) {
+                        if game.isPremium && !storeManager.hasPremiumAccess {
+                            showPaywall = true
+                        } else if !game.isComingSoon {
                             selectedGame = game
                         }
                     }
@@ -182,6 +189,7 @@ struct BubblesOverlay: View {
 struct GameCard: View {
     let game: CalmGame
     let totalSessions: Int
+    var isLocked: Bool = false
     let action: () -> Void
     
     // Coming soon = feature in development (NOT a paywall)
@@ -216,6 +224,20 @@ struct GameCard: View {
                         Image(systemName: game.iconName)
                             .font(.system(size: 28))
                             .foregroundColor(.white)
+                    }
+                    
+                    if isLocked {
+                        ZStack {
+                            Circle()
+                                .fill(Color.black.opacity(0.3))
+                                .frame(width: 32, height: 32)
+                            
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 14))
+                                .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        .padding(8)
                     }
                 }
                 
@@ -1596,16 +1618,31 @@ struct ZenStoneStackingGame: View {
     private func dropStone(at location: CGPoint, groundY: CGFloat) {
         guard var stone = currentStone else { return }
         
-        // Simple stacking logic: find highest point below x
-        // For simplicity in this demo, we just stack on top of the highest stone in range, or ground
-        
-        var yPos = groundY - stone.size.height / 2
+        // Find highest point below x
+        // Default to ground level
+        // groundY passed is height - 80. Ground visual is 100. 
+        // Let's treat groundY as the visual top of ground (height - 100)
+        // So we sink 5pts into it for weightiness
+        let groundLevel = groundY - 20 // Adjusting to match visual ground top (passed as height-80, we want height-100)
+        var yPos = groundLevel - stone.size.height / 2 + 5 // 5pt sink
         
         // Check collision with existing stones
         for settled in stones {
-            if abs(settled.position.x - location.x) < (settled.size.width + stone.size.width) / 2 {
-                // Approximate stacking
+            let dist = abs(settled.position.x - location.x)
+            let combinedRadii = (settled.size.width + stone.size.width) / 2
+            
+            // Require 30% overlap for stability check
+            // Overlap width = combinedRadii - dist
+            // We want overlap > min(w1, w2) * 0.3
+            
+            let minWidth = min(settled.size.width, stone.size.width)
+            let overlap = combinedRadii - dist
+            
+            if overlap > minWidth * 0.3 {
+                // Valid stacking spot
                 let newY = settled.position.y - settled.size.height/2 - stone.size.height/2 + 5 // Overlap slightly
+                
+                // If this spot is higher (lower Y value) than current find, uses it
                 if newY < yPos {
                     yPos = newY
                 }
@@ -2391,7 +2428,7 @@ struct GameHelpOverlay: View {
                     .foregroundColor(.primary.opacity(0.8))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(nil)
                 
                 Button(action: onDismiss) {
                     Text("Start Playing")

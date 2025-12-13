@@ -401,27 +401,27 @@ extension PersistenceController {
 
     
     static let defaultBreathingExercises: [BreathingExercise] = [
-        BreathingExercise(id: UUID(), name: "Box Breathing", description: "Equal inhale, hold, exhale, hold. Used for calm under pressure.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 4, holdBottomSeconds: 4, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "4-7-8 Relaxation", description: "Dr. Weil's technique for sleep and anxiety.", inhaleSeconds: 4, holdTopSeconds: 7, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Simple Calm", description: "Gentle inhale and exhale. Perfect for beginners.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 120, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Energizing Breath", description: "Quick cycles to boost energy and alertness.", inhaleSeconds: 3, holdTopSeconds: 0, exhaleSeconds: 3, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false),
-        BreathingExercise(id: UUID(), name: "Deep Sleep Breath", description: "Extended exhale pattern for rest.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 10, holdBottomSeconds: 2, defaultDurationSeconds: 300, isComingSoon: false)
+        BreathingExercise(id: UUID(), name: "Box Breathing", description: "Equal inhale, hold, exhale, hold. Used for calm under pressure.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 4, holdBottomSeconds: 4, defaultDurationSeconds: 180, isComingSoon: false, isPremium: false),
+        BreathingExercise(id: UUID(), name: "4-7-8 Relaxation", description: "Dr. Weil's technique for sleep and anxiety.", inhaleSeconds: 4, holdTopSeconds: 7, exhaleSeconds: 8, holdBottomSeconds: 0, defaultDurationSeconds: 180, isComingSoon: false, isPremium: false),
+        BreathingExercise(id: UUID(), name: "Simple Calm", description: "Gentle inhale and exhale. Perfect for beginners.", inhaleSeconds: 4, holdTopSeconds: 0, exhaleSeconds: 6, holdBottomSeconds: 0, defaultDurationSeconds: 120, isComingSoon: false, isPremium: false),
+        BreathingExercise(id: UUID(), name: "Energizing Breath", description: "Quick cycles to boost energy and alertness.", inhaleSeconds: 3, holdTopSeconds: 0, exhaleSeconds: 3, holdBottomSeconds: 0, defaultDurationSeconds: 60, isComingSoon: false, isPremium: true),
+        BreathingExercise(id: UUID(), name: "Deep Sleep Breath", description: "Extended exhale pattern for rest.", inhaleSeconds: 4, holdTopSeconds: 4, exhaleSeconds: 10, holdBottomSeconds: 2, defaultDurationSeconds: 300, isComingSoon: false, isPremium: true)
     ]
     
     static let defaultGames: [CalmGame] = [
-        CalmGame(id: UUID(), name: "Bubble Pop Calm", description: "Gently pop floating bubbles at your own pace", gameType: .bubblePop, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Calm Word", description: "Find peaceful words in letter grids", gameType: .calmWord, isComingSoon: true, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Calm Memory", description: "Match calming images gently", gameType: .memory, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil),
-        CalmGame(id: UUID(), name: "Thought Garden", description: "Plant and grow a peaceful digital garden", gameType: .thoughtGarden, isComingSoon: true, isLockedByProgress: true, unlockRequirement: 5),
-        CalmGame(id: UUID(), name: "Rhythm Steps", description: "Tap along to soothing rhythms", gameType: .rhythmSteps, isComingSoon: true, isLockedByProgress: false, unlockRequirement: nil)
+        CalmGame(id: UUID(), name: "Bubble Pop Calm", description: "Gently pop floating bubbles at your own pace", gameType: .bubblePop, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: false),
+        CalmGame(id: UUID(), name: "Calm Word", description: "Find peaceful words in letter grids", gameType: .calmWord, isComingSoon: true, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Calm Memory", description: "Match calming images gently", gameType: .memory, isComingSoon: false, isLockedByProgress: false, unlockRequirement: nil, isPremium: true),
+        CalmGame(id: UUID(), name: "Thought Garden", description: "Plant and grow a peaceful digital garden", gameType: .thoughtGarden, isComingSoon: true, isLockedByProgress: true, unlockRequirement: 5, isPremium: true),
+        CalmGame(id: UUID(), name: "Rhythm Steps", description: "Tap along to soothing rhythms", gameType: .rhythmSteps, isComingSoon: true, isLockedByProgress: false, unlockRequirement: nil, isPremium: true)
     ]
     
     static let defaultSleepTracks: [SleepTrack] = [
-        SleepTrack(id: UUID(), name: "All Night Rain", description: "Gentle rainfall to carry you through the night", audioAssetName: "relaxing_rain", durationMinutes: 600, tags: ["rain", "nature"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "All Night Fireplace", description: "Warm crackling fire sounds", audioAssetName: "fire_crackling", durationMinutes: 600, tags: ["fire", "cozy"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Ocean Waves", description: "Rhythmic waves on a peaceful shore", audioAssetName: "ocean_waves", durationMinutes: 600, tags: ["ocean", "nature"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Lullaby", description: "Soft instrumental melodies for rest", audioAssetName: "deep_sleep_instant", durationMinutes: 30, tags: ["music", "gentle"], isComingSoon: false),
-        SleepTrack(id: UUID(), name: "Forest Night", description: "Crickets, owls, and gentle forest ambiance", audioAssetName: "night_crickets_owls", durationMinutes: 600, tags: ["nature", "forest"], isComingSoon: false)
+        SleepTrack(id: UUID(), name: "All Night Rain", description: "Gentle rainfall to carry you through the night", audioAssetName: "relaxing_rain", durationMinutes: 600, tags: ["rain", "nature"], isComingSoon: false, isPremium: false),
+        SleepTrack(id: UUID(), name: "All Night Fireplace", description: "Warm crackling fire sounds", audioAssetName: "fire_crackling", durationMinutes: 600, tags: ["fire", "cozy"], isComingSoon: false, isPremium: true),
+        SleepTrack(id: UUID(), name: "Ocean Waves", description: "Rhythmic waves on a peaceful shore", audioAssetName: "ocean_waves", durationMinutes: 600, tags: ["ocean", "nature"], isComingSoon: false, isPremium: true),
+        SleepTrack(id: UUID(), name: "Lullaby", description: "Soft instrumental melodies for rest", audioAssetName: "deep_sleep_instant", durationMinutes: 30, tags: ["music", "gentle"], isComingSoon: false, isPremium: false),
+        SleepTrack(id: UUID(), name: "Forest Night", description: "Crickets, owls, and gentle forest ambiance", audioAssetName: "night_crickets_owls", durationMinutes: 600, tags: ["nature", "forest"], isComingSoon: false, isPremium: true)
     ]
     
     
@@ -475,7 +475,8 @@ extension PersistenceController {
                 JourneyStep(id: UUID(), day: 13, orderIndex: 13, stepType: .affirmation, refId: nil, title: "I Am Growing", instructions: "Acknowledging your progress"),
                 JourneyStep(id: UUID(), day: 14, orderIndex: 14, stepType: .lesson, refId: nil, title: "Neuroplasticity", instructions: "How your brain changes")
             ],
-            isComingSoon: false
+            isComingSoon: false,
+            isPremium: false
         ),
         Journey(
             id: UUID(),
@@ -489,7 +490,8 @@ extension PersistenceController {
                 JourneyStep(id: UUID(), day: 3, orderIndex: 3, stepType: .journal, refId: nil, title: "Worry Dump", instructions: "Clear your mind on paper"),
                 JourneyStep(id: UUID(), day: 4, orderIndex: 4, stepType: .affirmation, refId: nil, title: "Bedtime Affirmations", instructions: "Gentle words for rest")
             ],
-            isComingSoon: true
+            isComingSoon: true,
+            isPremium: true
         )
     ]
 }

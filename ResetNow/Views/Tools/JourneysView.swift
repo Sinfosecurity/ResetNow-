@@ -10,6 +10,8 @@ import SwiftUI
 struct JourneysView: View {
     @State private var selectedJourney: Journey?
     @State private var journeyProgress: [UUID: Int] = [:]
+    @State private var showPaywall = false
+    @EnvironmentObject var storeManager: StoreManager
     
     var body: some View {
         ScrollView {
@@ -44,6 +46,9 @@ struct JourneysView: View {
                 journeyProgress[journey.id] = completedStep + 1
             }
         }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
     }
     
     private var headerSection: some View {
@@ -71,7 +76,11 @@ struct JourneysView: View {
                     journey: journey,
                     progress: journeyProgress[journey.id]
                 ) {
-                    selectedJourney = journey
+                    if journey.isPremium && !storeManager.hasPremiumAccess {
+                        showPaywall = true
+                    } else {
+                        selectedJourney = journey
+                    }
                 }
             }
         }
@@ -277,7 +286,7 @@ struct JourneyCard: View {
             )
             .opacity(journey.isPremium ? 0.7 : 1)
         }
-        .disabled(journey.isPremium)
+        //.disabled(journey.isPremium) // Remove this so we can tap to see paywall
     }
 }
 

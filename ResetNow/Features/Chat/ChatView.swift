@@ -11,6 +11,8 @@ struct ChatView: View {
     @EnvironmentObject var persistence: PersistenceController
     @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
+    @StateObject private var storeManager = StoreManager.shared // Inject StoreManager
+    @State private var showPaywall = false
     @State private var messages: [ChatMessage] = []
     @State private var inputText = ""
     @State private var isTyping = false
@@ -37,47 +39,48 @@ struct ChatView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                // Subtle calming background
-                backgroundGradient
-                .ignoresSafeArea()
-                .onTapGesture {
-                    isInputFocused = false
-                }
-                
-                VStack(spacing: 0) {
-                    // Safety banner (Guideline 1.4.1 compliance)
-                    safetyBanner
-                    
-                    // Messages
-                    messagesScrollView
-                    
-                    // Input area
-                    inputArea
-                }
-            }
-            .toolbarBackground(.hidden, for: .navigationBar)
-            .navigationTitle("Chat with Rae")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: goToHome) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "house.fill")
-                            Text("Home")
-                        }
-                        .font(ResetTypography.caption(14))
-                        .foregroundColor(.calmSage)
-                        .frame(minWidth: 44, minHeight: 44)
-                        .contentShape(Rectangle())
+        ZStack {
+            NavigationStack {
+                ZStack {
+                    // Subtle calming background
+                    backgroundGradient
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        isInputFocused = false
                     }
-                    .accessibilityLabel("Home")
-                    .accessibilityHint("Returns to the main screen")
+                    
+                    VStack(spacing: 0) {
+                        // Safety banner (Guideline 1.4.1 compliance)
+                        safetyBanner
+                        
+                        // Messages
+                        messagesScrollView
+                        
+                        // Input area
+                        inputArea
+                    }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { showSafetyResources = true }) {
-                        Label("Safety", systemImage: "heart.circle.fill")
+                .toolbarBackground(.hidden, for: .navigationBar)
+                .navigationTitle("Chat with Rae")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: goToHome) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "house.fill")
+                                Text("Home")
+                            }
+                            .font(ResetTypography.caption(14))
+                            .foregroundColor(.calmSage)
+                            .frame(minWidth: 44, minHeight: 44)
+                            .contentShape(Rectangle())
+                        }
+                        .accessibilityLabel("Home")
+                        .accessibilityHint("Returns to the main screen")
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: { showSafetyResources = true }) {
+                            Label("Safety", systemImage: "heart.circle.fill")
                             .labelStyle(.titleAndIcon)
                             .font(ResetTypography.caption(12))
                             .foregroundColor(.sosRed)
@@ -86,23 +89,72 @@ struct ChatView: View {
                             .background(Capsule().fill(Color.sosRed.opacity(0.1)))
                             .frame(minWidth: 44, minHeight: 44)
                             .contentShape(Rectangle())
+                        }
+                        .accessibilityLabel("Safety Resources")
+                        .accessibilityHint("Opens emergency contact information")
                     }
-                    .accessibilityLabel("Safety Resources")
-                    .accessibilityHint("Opens emergency contact information")
+                    
+                    // Keyboard Dismissal
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            isInputFocused = false
+                        }
+                        .foregroundColor(.calmSage)
+                    }
                 }
-                
-                // Keyboard Dismissal
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("Done") {
-                        isInputFocused = false
-                    }
-                    .foregroundColor(.calmSage)
+                .sheet(isPresented: $showSafetyResources) {
+                    SOSResourcesView()
                 }
             }
-            .sheet(isPresented: $showSafetyResources) {
-                SOSResourcesView()
+            .blur(radius: storeManager.hasPremiumAccess ? 0 : 8)
+            .disabled(!storeManager.hasPremiumAccess)
+            
+            // Lock Overlay
+            if !storeManager.hasPremiumAccess {
+                VStack(spacing: ResetSpacing.lg) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 48))
+                        .foregroundColor(.calmSage)
+                        .padding()
+                        .background(Circle().fill(Color.white).resetShadow())
+                    
+                    VStack(spacing: ResetSpacing.sm) {
+                        Text("Unlock Chat with Rae")
+                            .font(ResetTypography.heading(20))
+                            .foregroundColor(.primary)
+                        
+                        Text("Get unlimited support from your\nwellbeing companion.")
+                            .font(ResetTypography.body(14))
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    Button(action: { showPaywall = true }) {
+                        Text("Unlock Premium")
+                            .font(ResetTypography.heading(16))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, ResetSpacing.xl)
+                            .padding(.vertical, ResetSpacing.md)
+                            .background(
+                                Capsule()
+                                    .fill(Color.calmSage)
+                                    .resetShadow()
+                            )
+                    }
+                }
+                .padding(ResetSpacing.xl)
+                .background(
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(Color(.systemBackground).opacity(0.9))
+                        .resetShadow()
+                )
+                .padding(ResetSpacing.xl)
+                .transition(.opacity)
             }
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
         .onAppear {
             setupChat()

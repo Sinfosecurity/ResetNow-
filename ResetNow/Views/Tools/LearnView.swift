@@ -11,6 +11,8 @@ struct LearnView: View {
     @State private var selectedLesson: Lesson?
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var persistence: PersistenceController
+    @StateObject private var storeManager = StoreManager.shared
+    @State private var showPaywall = false
     
     var lessonsByCategory: [Lesson.LessonCategory: [Lesson]] {
         Dictionary(grouping: persistence.lessons, by: { $0.category })
@@ -32,12 +34,19 @@ struct LearnView: View {
                 // Lessons by category
                 ForEach(Lesson.LessonCategory.allCases, id: \.rawValue) { category in
                     if let lessons = lessonsByCategory[category] {
-                        LessonCategorySection(
-                            category: category,
-                            lessons: lessons,
-                            completedIds: completedLessonIds,
-                            onSelect: { selectedLesson = $0 }
-                        )
+                            LessonCategorySection(
+                                category: category,
+                                lessons: lessons,
+                                completedIds: completedLessonIds,
+                                hasPremiumAccess: storeManager.hasPremiumAccess,
+                                onSelect: { lesson in
+                                    if lesson.isPremium && !storeManager.hasPremiumAccess {
+                                        showPaywall = true
+                                    } else {
+                                        selectedLesson = lesson
+                                    }
+                                }
+                            )
                     }
                 }
             }
@@ -57,6 +66,9 @@ struct LearnView: View {
             LessonDetailView(lesson: lesson) {
                 persistence.markLessonComplete(lesson.id)
             }
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
     
@@ -139,6 +151,7 @@ struct LessonCategorySection: View {
     let category: Lesson.LessonCategory
     let lessons: [Lesson]
     let completedIds: Set<UUID>
+    let hasPremiumAccess: Bool
     let onSelect: (Lesson) -> Void
     
     var body: some View {
@@ -150,7 +163,8 @@ struct LessonCategorySection: View {
             ForEach(lessons) { lesson in
                 LessonRow(
                     lesson: lesson,
-                    isCompleted: completedIds.contains(lesson.id)
+                    isCompleted: completedIds.contains(lesson.id),
+                    isLocked: lesson.isPremium && !hasPremiumAccess
                 ) {
                     onSelect(lesson)
                 }
@@ -162,7 +176,9 @@ struct LessonCategorySection: View {
 // MARK: - Lesson Row
 struct LessonRow: View {
     let lesson: Lesson
+
     let isCompleted: Bool
+    let isLocked: Bool
     let action: () -> Void
     
     var body: some View {
@@ -202,7 +218,11 @@ struct LessonRow: View {
                             .font(ResetTypography.heading(15))
                             .foregroundColor(isCompleted ? .warmGray : .deepSlate)
                         
-
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary.opacity(0.7))
+                        }
                     }
                     
                     Text(lesson.summary)
@@ -316,8 +336,49 @@ struct LessonDetailView: View {
                     }
 
                 }
-                .padding(.horizontal, ResetSpacing.md)
-                .padding(.bottom, 100) // Space for button
+                    .padding(.horizontal, ResetSpacing.md)
+                    
+                    // Medical Sources & Citations
+                    if !lesson.sources.isEmpty {
+                        VStack(alignment: .leading, spacing: ResetSpacing.md) {
+                            HStack {
+                                Image(systemName: "text.book.closed.fill")
+                                    .foregroundColor(.blue)
+                                Text("Evidence-Based Information")
+                                    .font(ResetTypography.heading(16))
+                                    .foregroundColor(.primary)
+                            }
+                            
+                            Text("This lesson is based on information from the following medical and scientific sources:")
+                                .font(ResetTypography.caption(12))
+                                .foregroundColor(.secondary)
+                            
+                            ForEach(lesson.sources, id: \.self) { source in
+                                HStack(spacing: 8) {
+                                    Circle()
+                                        .fill(Color.blue.opacity(0.5))
+                                        .frame(width: 4, height: 4)
+                                    Text(source)
+                                        .font(ResetTypography.caption(12))
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                        .padding(ResetSpacing.md)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(Color.blue.opacity(0.05))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.blue.opacity(0.1), lineWidth: 1)
+                                )
+                        )
+                        .padding(.horizontal, ResetSpacing.md)
+                        .padding(.top, ResetSpacing.md)
+                    }
+
+                    Spacer()
+                        .frame(height: 100) // Space for button
             }
             .background(Color(.systemBackground).ignoresSafeArea())
             .navigationBarTitleDisplayMode(.inline)
