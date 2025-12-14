@@ -72,8 +72,33 @@ struct PaywallView: View {
                     
                     
                     // Products
-                    // Products
-                    if !storeManager.products.isEmpty {
+                    if storeManager.isLoading {
+                        VStack(spacing: ResetSpacing.md) {
+                            ProgressView()
+                                .scaleEffect(1.2)
+                            Text("Loading plans...")
+                                .font(ResetTypography.caption(13))
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, ResetSpacing.xl)
+                    } else if storeManager.products.isEmpty {
+                        VStack(spacing: ResetSpacing.md) {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.system(size: 30))
+                                .foregroundColor(.warmPeach)
+                            Text("Unable to load subscription plans.")
+                                .font(ResetTypography.body(14))
+                                .foregroundColor(.secondary)
+                            Button("Retry") {
+                                Task {
+                                    await storeManager.loadProducts()
+                                }
+                            }
+                            .font(ResetTypography.heading(14))
+                            .foregroundColor(.calmSage)
+                        }
+                        .padding(.vertical, ResetSpacing.xl)
+                    } else {
                         VStack(spacing: ResetSpacing.md) {
                             ForEach(storeManager.products) { product in
                                 ProductOptionRow(
@@ -88,9 +113,34 @@ struct PaywallView: View {
                             }
                         }
                         .padding(.horizontal, ResetSpacing.lg)
+                        
+                        // CTA Button
+                        Button(action: purchaseSelected) {
+                            VStack(spacing: 2) {
+                                Text(ctaButtonText)
+                                    .font(ResetTypography.heading(18))
+                                
+                                if let selected = selectedProduct,
+                                   let intro = selected.subscription?.introductoryOffer {
+                                    Text("Try \(intro.period.value) \(intro.period.unit.localizedDescription) free")
+                                        .font(ResetTypography.caption(12))
+                                        .opacity(0.9)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(Color.calmSage)
+                            .foregroundColor(.white)
+                            .cornerRadius(16)
+                            .shadow(color: .calmSage.opacity(0.3), radius: 10, y: 5)
+                        }
+                        .padding(.horizontal, ResetSpacing.lg)
+                        .padding(.top, ResetSpacing.md)
+                        .disabled(selectedProduct == nil || storeManager.isLoading)
                     }
+                    
                     #if DEBUG
-                    if storeManager.products.isEmpty {
+                    if storeManager.products.isEmpty && !storeManager.isLoading {
                         // Simulator / Debug Fallback
                         VStack(spacing: ResetSpacing.md) {
                             Text("Preview Mode (No StoreKit Connection)")
@@ -119,34 +169,21 @@ struct PaywallView: View {
                             .onTapGesture {
                                 debugSelectedOption = 1
                             }
-                        }
-                        .padding(.horizontal, ResetSpacing.lg)
-                    }
-                    #endif
-                    
-                    // CTA Button
-                    Button(action: purchaseSelected) {
-                        VStack(spacing: 2) {
-                            Text(ctaButtonText)
-                                .font(ResetTypography.heading(18))
                             
-                            if let selected = selectedProduct,
-                               let intro = selected.subscription?.introductoryOffer {
-                                Text("Try \(intro.period.value) \(intro.period.unit.localizedDescription) free")
-                                    .font(ResetTypography.caption(12))
-                                    .opacity(0.9)
+                            Button(action: { storeManager.debugUnlock(); dismiss() }) {
+                                Text("Unlock (Preview)")
+                                    .font(ResetTypography.heading(16))
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.calmSage.opacity(0.5))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(16)
                             }
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(Color.calmSage)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
-                        .shadow(color: .calmSage.opacity(0.3), radius: 10, y: 5)
+                        .padding(.horizontal, ResetSpacing.lg)
+                        .padding(.top, ResetSpacing.md)
                     }
-                    .padding(.horizontal, ResetSpacing.lg)
-                    .padding(.top, ResetSpacing.md)
-                    .disabled((selectedProduct == nil && !storeManager.products.isEmpty) || storeManager.isLoading)
+                    #endif
                     
                     // Footer Links
                     HStack(spacing: ResetSpacing.lg) {
